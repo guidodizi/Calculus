@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Calculus | Preguntas</title>
+	
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet"> 
+    <link href="css/lightbox.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet">
+	<link href="css/ng-notify.min.css" rel="stylesheet">
+    <link rel="icon" href="images/LogoBox.png">
+
+	<!--[if lt IE 9]>
+	    <script src="js/html5shiv.js"></script>
+	    <script src="js/respond.min.js"></script>
+    <![endif]-->	
+	
+    <script src="js/Defaults/angular.min.js"></script>
+	<script src="js/Defaults/ng-notify.min.js"></script>
+</head>
+
+<body ng-app="PreguntasApp" ng-controller="PreguntasController as PreguntasCtrl" ng-init="PreguntasCtrl.init()">
+    <header-directive tema-actual="PreguntasCtrl.tema"></header-directive>
+
+    <section id="page-breadcrumb">
+        <div class="vertical-center sun">
+             <div class="container">
+                <div class="row">
+                    <div class="action">
+                        <div class="col-sm-12">
+                            <h1 class="title" ng-cloak>{{PreguntasCtrl.tema.tema}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="services">
+        <div class="container">
+			<hr>
+			<!-- Cada 3 se debe crear una row -->
+            <div ng-repeat="pregunta in PreguntasCtrl.preguntas" ng-if="$index % 3 == 0" class="row">
+				
+				<div ng-if="!PreguntasCtrl.preguntas[$index].blocked && !PreguntasCtrl.preguntas[$index].respuestaCorrecta" ng-click="PreguntasCtrl.accederPregunta(PreguntasCtrl.preguntas[$index])" class="col-sm-4 padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+					<div class="single-service">
+						<h2 style=" margin-left:50px;" ng-cloak>
+							<a href="#"><i style="color: #4b3e94; margin-top:1px;" class="fa fa-square fa-fw pull-left"></i></a>
+                            <p style="padding: 0px 30px;">{{$index +1}}. {{PreguntasCtrl.preguntas[$index].pregunta.titulo}}</p>
+						</h2>
+					</div>
+				</div>
+				<div ng-if="PreguntasCtrl.preguntas[$index].blocked" ng-click="PreguntasCtrl.mostrarAyuda(PreguntasCtrl.preguntas[$index])" class="col-sm-4 padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+					<div class="single-service">
+						<h2 style="margin-left:50px;" ng-cloak>
+							<a href="#" onclick="return false;"><i style="color: #4b3e94; margin-top:2px;" class="fa fa-lock fa-fw pull-left"></i></a>
+							<p style="padding: 0px 30px;">{{$index +1}}. {{PreguntasCtrl.preguntas[$index].pregunta.titulo}}</p>
+						</h2>
+					</div>
+				</div>
+                <div ng-if="PreguntasCtrl.preguntas[$index].respuestaCorrecta" class="col-sm-4 padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+                    <div class="single-service">
+                        <h2 style="margin-left:55px;" ng-cloak>
+                            <a><i style="color: #da9003;transform: scale(1.2); margin-right:10px; margin-top:1px;" class="fa fa-trophy pull-left"></i></a>
+                            <p style="padding: 0px 30px;">{{PreguntasCtrl.preguntas[$index].pregunta.titulo}}</p>
+                        </h2>
+                    </div>
+                </div>
+				
+				<ng-if ng-if="PreguntasCtrl.preguntas.length > ($index + 1)">
+					<div ng-if="!PreguntasCtrl.preguntas[$index + 1].blocked && !PreguntasCtrl.preguntas[$index + 1].respuestaCorrecta" ng-click="PreguntasCtrl.accederPregunta(PreguntasCtrl.preguntas[$index + 1])" class="col-sm-4 padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+						<div class="single-service">
+							<h2 style="margin-left:50px;" ng-cloak>
+								<a href="#"><i style="color: #4b3e94; margin-top:1px;" class="fa fa-square fa-fw pull-left"></i></a>
+                                <p style="padding: 0px 30px;">{{$index +2}}. {{PreguntasCtrl.preguntas[$index +1].pregunta.titulo}}</p>
+							</h2>
+						</div>
+					</div>
+					<div ng-if="PreguntasCtrl.preguntas[$index + 1].blocked" ng-click="PreguntasCtrl.mostrarAyuda(PreguntasCtrl.preguntas[$index + 1])" class="col-sm-4 padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+						<div class="single-service">
+							<h2 style="margin-left:50px;" ng-cloak>
+								<a href="#" onclick="return false;"><i style="color: #4b3e94; margin-top:2px;" class="fa fa-lock fa-fw pull-left"></i></a>
+								<p style="padding: 0px 30px;">{{$index + 2}}. {{PreguntasCtrl.preguntas[$index + 1].pregunta.titulo}}</p>
+							</h2>
+						</div>
+					</div>
+                    <div ng-if="PreguntasCtrl.preguntas[$index + 1].respuestaCorrecta" class="col-sm-4 padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+                        <div class="single-service">
+                            <h2 style="margin-left:55px;" ng-cloak>
+                                <a><i style="color: #da9003;transform: scale(1.2); margin-right:10px; margin-top:1px;" class="fa fa-trophy pull-left"></i></a>
+                                <p style="padding: 0px 30px;">{{PreguntasCtrl.preguntas[$index + 1].pregunta.titulo}}</p>
+                            </h2>
+                        </div>
+                    </div>
+				</ng-if>
+				
+				<ng-if ng-if="PreguntasCtrl.preguntas.length > ($index + 2)">
+					<div ng-if="!PreguntasCtrl.preguntas[$index + 2].blocked && !PreguntasCtrl.preguntas[$index + 2].respuestaCorrecta" ng-click="PreguntasCtrl.accederPregunta(PreguntasCtrl.preguntas[$index + 2])" class="col-sm-4 padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+						<div class="single-service">
+							<h2 style="margin-left:50px;" ng-cloak>
+								<a href="#"><i style="color: #4b3e94; margin-top:1px;" class="fa fa-square fa-fw pull-left"></i></a>
+                                 <p style="padding: 0px 30px;">{{$index + 3}}. {{PreguntasCtrl.preguntas[$index + 2].pregunta.titulo}}</p>
+							</h2>
+						</div>
+					</div>
+					<div ng-if="PreguntasCtrl.preguntas[$index + 2].blocked" ng-click="PreguntasCtrl.mostrarAyuda(PreguntasCtrl.preguntas[$index + 2])" class="col-sm-4 padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+						<div class="single-service">
+							<h2 style="margin-left:50px;" ng-cloak>
+								<a href="#" onclick="return false;"><i style="color: #4b3e94; margin-top:2px;" class="fa fa-lock fa-fw pull-left"></i></a>
+								<p style="padding: 0px 30px;">{{$index + 3}}. {{PreguntasCtrl.preguntas[$index + 2].pregunta.titulo}}</p>
+							</h2>
+						</div>
+					</div>
+                    <div ng-if="PreguntasCtrl.preguntas[$index + 2].respuestaCorrecta" class="col-sm-4 padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+                        <div class="single-service">
+                            <h2 style="margin-left:55px;" ng-cloak>
+                                <a><i style="color: #da9003;transform: scale(1.2); margin-right:10px; margin-top:1px;" class="fa fa-trophy pull-left"></i></a>
+                                 <p style="padding: 0px 30px;">{{PreguntasCtrl.preguntas[$index + 2].pregunta.titulo}}</p>
+                            </h2>
+                        </div>
+                    </div>
+				</ng-if>				
+				
+            </div>
+			<hr>
+        </div>
+    </section>
+
+    <div ng-show="PreguntasCtrl.total == PreguntasCtrl.correct && PreguntasCtrl.preguntas != undefined" style="margin: 15px 5px 40px 5px; text-align:center;" ng-cloak>
+        <div align=center>
+            <img src="images/trophyLevel.png" style="height:80px;">
+            <!-- <i style="margin:10px; color: #da9003;transform: scale(6); margin-right:8px;" class="fa fa-trophy"></i> -->
+        </div>
+        <h2 > ¡Enhorabuena! Has completado este tema (ツ)</h2>
+    </div>
+
+    <section id="estadisticas">
+		<div class="container">
+			<div class="our-skills" style="margin: 0 10px 0 10px;" ng-show="PreguntasCtrl.preguntas != null">
+				<h2 class="bold" ng-cloak>Avance {{PreguntasCtrl.tema.tema}}</h2>
+				<div class="single-skill">
+					<h3>Completado</h3>
+					<div class="progress">
+						<div class="progress-bar progress-bar-success six-sec-ease-in-out" role="progressbar" data-transition="{{PreguntasCtrl.completed}}" style="width: {{PreguntasCtrl.completed}}%;" ng-cloak>{{PreguntasCtrl.completed | number:0}}%
+						</div>
+					</div>
+				</div>
+				<div class="single-skill">
+					<h3>Desbloqueado</h3>
+					<div class="progress">
+						<div class="progress-bar progress-bar-warning six-sec-ease-in-out" role="progressbar" data-transition="{{PreguntasCtrl.unlocked}}" style="width: {{PreguntasCtrl.unlocked}}%;" ng-cloak>{{PreguntasCtrl.unlocked | number:0}}%
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+    </section>
+    
+    <footer-directive></footer-directive>
+    
+    <script type="text/javascript" src="js/Defaults/jquery.js"></script>
+    <script type="text/javascript" src="js/Defaults/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/Defaults/lightbox.min.js"></script>
+    <script type="text/javascript" src="js/Defaults/wow.min.js"></script>
+    <script type="text/javascript" src="js/Defaults/jquery.countTo.js"></script>
+    <script type="text/javascript" src="js/Defaults/main.js"></script>   
+    <script type="text/javascript" src="js/utiles.js"></script>
+    <script type="text/javascript" src="js/preguntas.js"></script>
+	
+</body>
+</html>

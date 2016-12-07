@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Calculus | Registrar</title>
+	
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet"> 
+    <link href="css/lightbox.css" rel="stylesheet"> 
+    <link href="css/custom.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet">
+    <link href="css/ng-notify.min.css" rel="stylesheet">
+	<link rel="icon" href="images/LogoBox.png">
+	
+    <!--[if lt IE 9]>
+	    <script src="js/html5shiv.js"></script>
+	    <script src="js/respond.min.js"></script>
+    <![endif]-->
+	   
+    <script src="js/Defaults/angular.min.js"></script>
+    <script src="js/Defaults/ng-notify.min.js"></script>
+</head>
+
+<body ng-app="RegistrarApp">
+    <header id="header">      
+      	<img src="images/Layer1.png" alt="logo" class="imgLogo">
+    </header>
+
+	<div class="container" ng-controller="RegistrarController as RCtrl">
+		<div class="row">
+
+			<div class="col-xs-12">
+				<div class="bottom">
+                                        <h1>Registrarse</h1>
+					<div class="form-group">
+						<input type="text" ng-model="RCtrl.name" ng-keyup="RCtrl.access($event)" class="form-control" required="required" placeholder="Nombre">
+					</div>                        
+					<div class="form-group">
+						<input type="text" ng-model="RCtrl.email" ng-keyup="RCtrl.access($event)" class="form-control" required="required" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<input type="password" ng-model="RCtrl.password" ng-keyup="RCtrl.access($event)" class="form-control" required="required" placeholder="Contraseña">
+					</div>                        
+					<div class="form-group">
+						<input type="submit" ng-click="RCtrl.sendRegistrar()" class="btn btn-submit" value="Registrar">
+					</div>
+					<a href="login.html" style="float:right; color:#337ab7; margin-bottom:5px;">
+					   ¿Ya estás registrado? ¡Logueate aquí!
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<footer-directive></footer-directive>
+
+    <script type="text/javascript" src="js/Defaults/jquery.js"></script>
+    <script type="text/javascript" src="js/Defaults/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/Defaults/lightbox.min.js"></script>
+    <script type="text/javascript" src="js/Defaults/wow.min.js"></script>
+    <script type="text/javascript" src="js/Defaults/main.js"></script>  
+    <script type="text/javascript" src="js/utiles.js"></script>
+    <script type="text/javascript" src="js/registrar.js"></script> 
+ 
+</body>
+</html>

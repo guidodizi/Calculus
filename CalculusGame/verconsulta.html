@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Calculus | Consulta</title>
+	
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet"> 
+    <link href="css/lightbox.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet">
+	<link href="css/ng-notify.min.css" rel="stylesheet">
+    <link rel="icon" href="images/LogoBox.png">
+
+	<!--[if lt IE 9]>
+	    <script src="js/html5shiv.js"></script>
+	    <script src="js/respond.min.js"></script>
+    <![endif]-->	
+	
+    <script src="js/Defaults/angular.min.js"></script>
+	<script src="js/Defaults/ng-notify.min.js"></script>
+</head>
+
+<body ng-app="VerConsultaApp" ng-controller="VerConsultaController as VerConsultaCtrl" ng-init="VerConsultaCtrl.init()">
+    <header-directive></header-directive>
+
+    <section id="page-breadcrumb">
+        <div class="vertical-center sun">
+            <div class="container">
+                <div class="row">
+                    <div class="action">
+                        <div class="col-sm-12">
+                            <h1 class="title" style="margin-bottom: 0px;">Consulta</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+	<div class="container">
+		<hr>
+		<div id="feature-container">
+
+			<div class="form-group">
+				Fecha: &nbsp &nbsp {{VerConsultaCtrl.consulta.fecha}}
+			</div>
+
+			<div class="form-group">
+				Motivo: <input type="text" class="form-control" style="background-color: #f7f7f7;" value={{VerConsultaCtrl.consulta.motivo}} readonly>
+			</div>
+
+			<div class="form-group">
+				Consulta: <textarea type="password" style="min-height: 100px; background-color: #f7f7f7;" class="form-control" readonly>{{VerConsultaCtrl.consulta.duda}}</textarea>
+			</div> 
+
+			<ng-if ng-if="VerConsultaCtrl.consulta.respuesta != null">
+				<div class="form-group">
+					Respuesta: <textarea type="password" style="min-height: 100px; background-color: #f7f7f7;" class="form-control" readonly>{{VerConsultaCtrl.consulta.respuesta}}</textarea>
+				</div> 
+			</ng-if>
+			
+		
+		</div><!--/#feature-container-->
+		<hr>
+    </div>          
+
+    <footer-directive></footer-directive>
+    
+    <script type="text/javascript" src="js/Defaults/jquery.js"></script>
+    <script type="text/javascript" src="js/Defaults/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/Defaults/lightbox.min.js"></script>
+    <script type="text/javascript" src="js/Defaults/wow.min.js"></script>
+    <script type="text/javascript" src="js/Defaults/jquery.countTo.js"></script>
+    <script type="text/javascript" src="js/Defaults/main.js"></script>   
+	<script type="text/javascript" src="js/utiles.js"></script>
+    <script type="text/javascript" src="js/verconsulta.js"></script>
+	
+</body>
+</html>

@@ -1,0 +1,6 @@
+*.DS_Store
+/Calculus/target/
+/CalculusGame/build/
+/CalculusAdmin/nbproject/private/
+calculusBackendTest.log
+/juego-triangle/nbproject/private/

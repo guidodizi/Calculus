@@ -1,0 +1,1488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Calculus">
+  <ClassDiagramComponents>
+    <Class name="CalculusBackendConfiguration" package="calculus.backend" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="CalculusBackendInitializer" package="calculus.backend" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="LOG" type="Logger" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getRootConfigClasses" returnType="Class&lt;?&gt;[]" visibility="protected"/>
+        <Method name="getServletConfigClasses" returnType="Class&lt;?&gt;[]" visibility="protected"/>
+        <Method name="getServletMappings" returnType="String[]" visibility="protected"/>
+        <Method name="getServletFilters" returnType="Filter[]" visibility="protected"/>
+        <Method name="onStartup" returnType="void" visibility="public">
+          <Argument type="ServletContext" name="servletContext"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GlobalDefaultExceptionHandler" package="calculus.backend.controller.v1" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="LOG" type="Logger" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="defaultErrorHandler" returnType="ErrorInfo" visibility="public">
+          <Argument type="HttpServletRequest" name="req"/>
+          <Argument type="Exception" name="ex"/>
+        </Method>
+        <Method name="entityNotFoundExceptionHandler" returnType="ErrorInfo" visibility="public">
+          <Argument type="HttpServletRequest" name="req"/>
+          <Argument type="EntityNotFoundException" name="ex"/>
+        </Method>
+        <Method name="badCredentialsExceptionHandler" returnType="ErrorInfo" visibility="public">
+          <Argument type="HttpServletRequest" name="req"/>
+          <Argument type="BadCredentialsException" name="ex"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="InitController" package="calculus.backend.controller.v1" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="LOG" type="Logger" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="alumnoService" type="AlumnoService" visibility="private"/>
+        <Field name="preguntaService" type="PreguntaService" visibility="private"/>
+        <Field name="temaService" type="TemaService" visibility="private"/>
+        <Field name="profesorService" type="ProfesorService" visibility="private"/>
+        <Field name="dudaService" type="DudaService" visibility="private"/>
+        <Field name="errorService" type="ErrorService" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="init" returnType="ResponseEntity&lt;String&gt;" visibility="public"/>
+        <Method name="newData" returnType="ResponseEntity&lt;String&gt;" visibility="public"/>
+        <Method name="login" returnType="ResponseEntity&lt;Void&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="AbstractController" package="calculus.backend.controller.v2.admin" visibility="public" isAbstract="true" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="AUTHORIZATION" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getService" returnType="AbstractService" visibility="protected" isAbstract="true"/>
+        <Method name="getMapString" returnType="String" visibility="protected" isAbstract="true"/>
+        <Method name="checkCreate" returnType="void" visibility="protected" isAbstract="true"/>
+        <Method name="checkUpdate" returnType="void" visibility="protected" isAbstract="true"/>
+        <Method name="checkDelete" returnType="void" visibility="protected" isAbstract="true"/>
+        <Method name="findAll" returnType="ResponseEntity&lt;List&lt;T&gt;&gt;" visibility="public">
+          <Argument type="String" name="authorizationToken"/>
+        </Method>
+        <Method name="findById" returnType="ResponseEntity&lt;T&gt;" visibility="public">
+          <Argument type="long" name="id"/>
+          <Argument type="String" name="authorizationToken"/>
+        </Method>
+        <Method name="create" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="T" name="obj"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+          <Argument type="String" name="authorizationToken"/>
+        </Method>
+        <Method name="update" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="T" name="obj"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+          <Argument type="String" name="authorizationToken"/>
+        </Method>
+        <Method name="delete" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="long" name="id"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+          <Argument type="String" name="authorizationToken"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AlumnoController" package="calculus.backend.controller.v2.admin" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="URI_PREFIX" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="service" type="AlumnoService" visibility="protected"/>
+        <Field name="sessionService" type="SessionService" visibility="protected"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getService" returnType="AbstractService" visibility="protected"/>
+        <Method name="getMapString" returnType="String" visibility="protected"/>
+        <Method name="checkCreate" returnType="void" visibility="protected"/>
+        <Method name="checkUpdate" returnType="void" visibility="protected"/>
+        <Method name="checkDelete" returnType="void" visibility="protected"/>
+        <Method name="getProgresoAlumno" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="Long" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DashboardController" package="calculus.backend.controller.v2.admin" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="service" type="DashboardService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getEstadisticas" returnType="ResponseEntity&lt;EstadisticasDashboard&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="DudaController" package="calculus.backend.controller.v2.admin" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="service" type="DudaService" visibility="package"/>
+        <Field name="sessionService" type="SessionService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getService" returnType="DudaService" visibility="protected"/>
+        <Method name="getMapString" returnType="String" visibility="protected"/>
+        <Method name="findAll" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="findById" returnType="ResponseEntity&lt;Duda&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="long" name="id"/>
+        </Method>
+        <Method name="setRespuesta" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="Long" name="id"/>
+          <Argument type="String" name="respuesta"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+        </Method>
+        <Method name="setLeida" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="Long" name="id"/>
+          <Argument type="Boolean" name="leida"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+        </Method>
+        <Method name="replace" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="Duda" name="obj"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ErrorController" package="calculus.backend.controller.v2.admin" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="service" type="ErrorService" visibility="package"/>
+        <Field name="sessionService" type="SessionService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getService" returnType="ErrorService" visibility="protected"/>
+        <Method name="getMapString" returnType="String" visibility="protected"/>
+        <Method name="findAll" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="findById" returnType="ResponseEntity&lt;Error&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="long" name="id"/>
+        </Method>
+        <Method name="setLeida" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="Long" name="id"/>
+          <Argument type="Boolean" name="leida"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PreguntaController" package="calculus.backend.controller.v2.admin" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields>
+        <Field name="URI_PREFIX" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="preguntaService" type="PreguntaService" visibility="package"/>
+        <Field name="alumnoService" type="AlumnoService" visibility="package"/>
+        <Field name="profesorService" type="ProfesorService" visibility="package"/>
+        <Field name="sessionService" type="SessionService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getService" returnType="AbstractService" visibility="protected"/>
+        <Method name="getMapString" returnType="String" visibility="protected"/>
+        <Method name="create" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="Pregunta" name="obj"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+          <Argument type="String" name="authorizationToken"/>
+        </Method>
+        <Method name="getPreguntasAlumnoTema" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="long" name="idTema"/>
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="checkCreate" returnType="void" visibility="protected"/>
+        <Method name="checkUpdate" returnType="void" visibility="protected"/>
+        <Method name="checkDelete" returnType="void" visibility="protected"/>
+      </Methods>
+    </Class>
+    <Class name="ProfesorController" package="calculus.backend.controller.v2.admin" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields>
+        <Field name="URI_PREFIX" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="service" type="ProfesorService" visibility="protected"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getService" returnType="AbstractService" visibility="protected"/>
+        <Method name="getMapString" returnType="String" visibility="protected"/>
+        <Method name="checkCreate" returnType="void" visibility="protected"/>
+        <Method name="checkUpdate" returnType="void" visibility="protected"/>
+        <Method name="checkDelete" returnType="void" visibility="protected"/>
+      </Methods>
+    </Class>
+    <Class name="SessionController" package="calculus.backend.controller.v2.admin" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="service" type="SessionService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="login" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="type"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="password"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TemaController" package="calculus.backend.controller.v2.admin" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="URI_PREFIX" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="service" type="TemaService" visibility="protected"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getService" returnType="AbstractService" visibility="protected"/>
+        <Method name="getMapString" returnType="String" visibility="protected"/>
+        <Method name="checkCreate" returnType="void" visibility="protected"/>
+        <Method name="checkUpdate" returnType="void" visibility="protected"/>
+        <Method name="checkDelete" returnType="void" visibility="protected"/>
+      </Methods>
+    </Class>
+    <Class name="AlumnoController" package="calculus.backend.controller.v2.game" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="URI_PREFIX" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="alumnoService" type="AlumnoService" visibility="package"/>
+        <Field name="sessionService" type="SessionService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="findAllPreguntaAlumno" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DudaController" package="calculus.backend.controller.v2.game" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="dudaService" type="DudaService" visibility="package"/>
+        <Field name="sessionService" type="SessionService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getMapString" returnType="String" visibility="private"/>
+        <Method name="findAll" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="findById" returnType="ResponseEntity&lt;Duda&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="long" name="id"/>
+        </Method>
+        <Method name="create" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="Duda" name="obj"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+        </Method>
+        <Method name="replace" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="Duda" name="obj"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ErrorController" package="calculus.backend.controller.v2.game" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Fields>
+        <Field name="errorService" type="ErrorService" visibility="package"/>
+        <Field name="sessionService" type="SessionService" visibility="package"/>
+        <Field name="preguntaService" type="PreguntaService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getMapString" returnType="String" visibility="private"/>
+        <Method name="findAll" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="findById" returnType="ResponseEntity&lt;Error&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="long" name="id"/>
+        </Method>
+        <Method name="create" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="Long" name="preguntaId"/>
+          <Argument type="String" name="descripcion"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PreguntaController" package="calculus.backend.controller.v2.game" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Fields>
+        <Field name="preguntaService" type="PreguntaService" visibility="package"/>
+        <Field name="alumnoService" type="AlumnoService" visibility="package"/>
+        <Field name="sessionService" type="SessionService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="findAllPreguntaAlumno" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="getPreguntaAlumno" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="long" name="pregunta_id"/>
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="responderPregunta" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="long" name="pregunta_id"/>
+          <Argument type="String" name="respuesta"/>
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="getPrevias" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="Long" name="id"/>
+          <Argument type="String" name="token_key"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SessionController" package="calculus.backend.controller.v2.game" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Fields>
+        <Field name="service" type="SessionService" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="login" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="type"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="fbLogin" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="Long" name="fbid"/>
+          <Argument type="String" name="name"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TemaController" package="calculus.backend.controller.v2.game" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="URI_PREFIX" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="preguntaService" type="PreguntaService" visibility="package"/>
+        <Field name="alumnoService" type="AlumnoService" visibility="package"/>
+        <Field name="sessionService" type="SessionService" visibility="package"/>
+        <Field name="temaService" type="TemaService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="findAllPreguntaAlumno" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="getPreguntasAlumno" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="long" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="CORSFilter" package="calculus.backend" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="doFilter" returnType="void" visibility="public">
+          <Argument type="ServletRequest" name="req"/>
+          <Argument type="ServletResponse" name="res"/>
+          <Argument type="FilterChain" name="chain"/>
+        </Method>
+        <Method name="init" returnType="void" visibility="public">
+          <Argument type="FilterConfig" name="filterConfig"/>
+        </Method>
+        <Method name="destroy" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="BadCredentialsException" package="calculus.backend.exception" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="msg"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="GeneralUtil" package="calculus.backend" visibility="public" xPosition="1520.0" yPosition="820.0">
+      <Fields>
+        <Field name="REST_SERVICE_BASE_URI" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getEntityIdFromLocation" returnType="Long" visibility="public" isStatic="true">
+          <Argument type="String" name="location"/>
+        </Method>
+        <Method name="getForObject" returnType="T" visibility="public" isStatic="true">
+          <Argument type="RestTemplate" name="restTemplate"/>
+          <Argument type="String" name="uri"/>
+          <Argument type="Class&lt;T&gt;" name="clazz"/>
+          <Argument type="String" name="authorizationValue"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="JpaConfig" package="calculus.backend" visibility="public" xPosition="1820.0" yPosition="820.0">
+      <Fields>
+        <Field name="LOG" type="Logger" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="driver" type="String" visibility="package"/>
+        <Field name="poolSize" type="int" visibility="package"/>
+        <Field name="dataBase" type="Database" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="dataSource" returnType="DataSource" visibility="public"/>
+        <Method name="entityManagerFactory" returnType="LocalContainerEntityManagerFactoryBean" visibility="public"/>
+        <Method name="transactionManager" returnType="JpaTransactionManager" visibility="public"/>
+        <Method name="exceptionTranslation" returnType="PersistenceExceptionTranslationPostProcessor" visibility="public"/>
+        <Method name="propiedadesAdicionalesJpa" returnType="Properties" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="AbstractModel" package="calculus.backend.model" visibility="public" isAbstract="true" xPosition="2120.0" yPosition="820.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getId" returnType="Long" visibility="public" isAbstract="true"/>
+        <Method name="setId" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="obj"/>
+        </Method>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Alumno" package="calculus.backend.model" visibility="public" xPosition="20.0" yPosition="1220.0">
+      <Fields>
+        <Field name="puntaje" type="int" visibility="private"/>
+        <Field name="preguntasAlumno" type="Map&lt;Long, PreguntaAlumno&gt;" visibility="private"/>
+        <Field name="cantidadPreguntasIncorrectas" type="Integer" visibility="private"/>
+        <Field name="cantidadPreguntasCorrectas" type="Integer" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getPuntaje" returnType="int" visibility="public"/>
+        <Method name="setPuntaje" returnType="void" visibility="public">
+          <Argument type="int" name="puntaje"/>
+        </Method>
+        <Method name="getPreguntasAlumno" returnType="Map&lt;Long, PreguntaAlumno&gt;" visibility="public"/>
+        <Method name="setPreguntasAlumno" returnType="void" visibility="public">
+          <Argument type="Map&lt;Long, PreguntaAlumno&gt;" name="preguntasAlumno"/>
+        </Method>
+        <Method name="getCantidadPreguntasIncorrectas" returnType="Integer" visibility="public"/>
+        <Method name="setCantidadPreguntasIncorrectas" returnType="void" visibility="public">
+          <Argument type="Integer" name="cantidadPreguntasIncorrectas"/>
+        </Method>
+        <Method name="getCantidadPreguntasCorrectas" returnType="Integer" visibility="public"/>
+        <Method name="setCantidadPreguntasCorrectas" returnType="void" visibility="public">
+          <Argument type="Integer" name="cantidadPreguntasCorrectas"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Duda" package="calculus.backend.model" visibility="public" xPosition="320.0" yPosition="1220.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="duda" type="String" visibility="private"/>
+        <Field name="respuesta" type="String" visibility="private"/>
+        <Field name="fecha" type="Date" visibility="private"/>
+        <Field name="leida" type="boolean" visibility="private"/>
+        <Field name="titulo" type="String" visibility="private"/>
+        <Field name="motivo" type="String" visibility="private"/>
+        <Field name="alumno" type="Alumno" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getId" returnType="Long" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="getDuda" returnType="String" visibility="public"/>
+        <Method name="setDuda" returnType="void" visibility="public">
+          <Argument type="String" name="duda"/>
+        </Method>
+        <Method name="getRespuesta" returnType="String" visibility="public"/>
+        <Method name="setRespuesta" returnType="void" visibility="public">
+          <Argument type="String" name="respuesta"/>
+        </Method>
+        <Method name="getAlumno" returnType="Alumno" visibility="public"/>
+        <Method name="setAlumno" returnType="void" visibility="public">
+          <Argument type="Alumno" name="alumno"/>
+        </Method>
+        <Method name="getLeida" returnType="boolean" visibility="public"/>
+        <Method name="setLeida" returnType="void" visibility="public">
+          <Argument type="boolean" name="leida"/>
+        </Method>
+        <Method name="getFecha" returnType="Date" visibility="public"/>
+        <Method name="setFecha" returnType="void" visibility="public">
+          <Argument type="Date" name="fecha"/>
+        </Method>
+        <Method name="getTitulo" returnType="String" visibility="public"/>
+        <Method name="setTitulo" returnType="void" visibility="public">
+          <Argument type="String" name="titulo"/>
+        </Method>
+        <Method name="getMotivo" returnType="String" visibility="public"/>
+        <Method name="setMotivo" returnType="void" visibility="public">
+          <Argument type="String" name="motivo"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Error" package="calculus.backend.model" visibility="public" xPosition="620.0" yPosition="1220.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+        <Field name="fecha" type="Date" visibility="private"/>
+        <Field name="leida" type="boolean" visibility="private"/>
+        <Field name="alumno" type="Alumno" visibility="private"/>
+        <Field name="pregunta" type="Pregunta" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Alumno" name="alumno"/>
+          <Argument type="Pregunta" name="pregunta"/>
+          <Argument type="String" name="descripcion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="Long" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="getDescripcion" returnType="String" visibility="public"/>
+        <Method name="setDescripcion" returnType="void" visibility="public">
+          <Argument type="String" name="descripcion"/>
+        </Method>
+        <Method name="getFecha" returnType="Date" visibility="public"/>
+        <Method name="setFecha" returnType="void" visibility="public">
+          <Argument type="Date" name="fecha"/>
+        </Method>
+        <Method name="getLeida" returnType="boolean" visibility="public"/>
+        <Method name="setLeida" returnType="void" visibility="public">
+          <Argument type="boolean" name="leida"/>
+        </Method>
+        <Method name="getAlumno" returnType="Alumno" visibility="public"/>
+        <Method name="setAlumno" returnType="void" visibility="public">
+          <Argument type="Alumno" name="alumno"/>
+        </Method>
+        <Method name="getPregunta" returnType="Pregunta" visibility="public"/>
+        <Method name="setPregunta" returnType="void" visibility="public">
+          <Argument type="Pregunta" name="pregunta"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="EstadisticasDashboard" package="calculus.backend.model" visibility="public" xPosition="920.0" yPosition="1220.0">
+      <Fields>
+        <Field name="cantidad_alumnos" type="long" visibility="private"/>
+        <Field name="cantidad_dudas" type="long" visibility="private"/>
+        <Field name="cantidad_respuestas_correctas" type="long" visibility="private"/>
+        <Field name="cantidad_respuestas" type="long" visibility="private"/>
+        <Field name="preguntas_dificiles" type="Set&lt;Pregunta&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="long" name="cantRespuestasCorrectas"/>
+          <Argument type="long" name="cantRespuestas"/>
+          <Argument type="Set&lt;Pregunta&gt;" name="preguntasDificiles"/>
+          <Argument type="long" name="count_dudas"/>
+          <Argument type="long" name="count_alumnos"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCantidadAlumnos" returnType="long" visibility="public"/>
+        <Method name="getCantidadDudas" returnType="long" visibility="public"/>
+        <Method name="getCantidadRespuestas" returnType="long" visibility="public"/>
+        <Method name="getProcentajeRespuestasCorrectas" returnType="float" visibility="public"/>
+        <Method name="getPreguntasDificiles" returnType="Set&lt;Pregunta&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Informacion" package="calculus.backend.model" visibility="public" xPosition="1220.0" yPosition="1220.0">
+      <Fields>
+        <Field name="texto" type="String" visibility="private"/>
+        <Field name="imagen" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="texto"/>
+          <Argument type="String" name="imagen"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getTexto" returnType="String" visibility="public"/>
+        <Method name="setTexto" returnType="void" visibility="public">
+          <Argument type="String" name="texto"/>
+        </Method>
+        <Method name="getImagen" returnType="String" visibility="public"/>
+        <Method name="setImagen" returnType="void" visibility="public">
+          <Argument type="String" name="imagen"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Persona" package="calculus.backend.model" visibility="public" isAbstract="true" xPosition="1520.0" yPosition="1220.0">
+      <Fields>
+        <Field name="serialVersionUID" type="long" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="token_key" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Long" name="id"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getToken_key" returnType="String" visibility="public"/>
+        <Method name="setToken_key" returnType="void" visibility="public">
+          <Argument type="String" name="key"/>
+        </Method>
+        <Method name="getId" returnType="Long" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getEmail" returnType="String" visibility="public"/>
+        <Method name="setEmail" returnType="void" visibility="public">
+          <Argument type="String" name="email"/>
+        </Method>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="setPassword" returnType="void" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="object"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Pregunta" package="calculus.backend.model" visibility="public" isAbstract="true" xPosition="1820.0" yPosition="1220.0">
+      <Fields>
+        <Field name="serialVersionUID" type="long" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="respuesta" type="String" visibility="package"/>
+        <Field name="puntos" type="int" visibility="private"/>
+        <Field name="inicial" type="boolean" visibility="private"/>
+        <Field name="titulo" type="String" visibility="private"/>
+        <Field name="profesor" type="Profesor" visibility="private"/>
+        <Field name="descripcion" type="Informacion" visibility="private"/>
+        <Field name="tip" type="Informacion" visibility="private"/>
+        <Field name="tema" type="Tema" visibility="private"/>
+        <Field name="preguntasQueDesbloquea" type="Map&lt;Long, Pregunta&gt;" visibility="package"/>
+        <Field name="idPreguntasQueDesbloquea" type="Collection&lt;Long&gt;" visibility="private"/>
+        <Field name="cantRespuestas" type="int" visibility="private"/>
+        <Field name="cantRespuestasCorrectas" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Tema" name="tema"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="Tema" name="tema"/>
+          <Argument type="boolean" name="esInicial"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdPreguntasQueDesbloquea" returnType="Collection&lt;Long&gt;" visibility="public"/>
+        <Method name="setIdPreguntasQueDesbloquea" returnType="void" visibility="public">
+          <Argument type="Collection&lt;Long&gt;" name="idPreguntasQueDesbloquea"/>
+        </Method>
+        <Method name="getIdNuevasPreguntasQueDesbloquea" returnType="Collection&lt;Long&gt;" visibility="public"/>
+        <Method name="esCorrectaRespuesta" returnType="boolean" visibility="public" isAbstract="true">
+          <Argument type="String" name="r"/>
+        </Method>
+        <Method name="getType" returnType="Class" visibility="public" isAbstract="true"/>
+        <Method name="addPreguntaQueDesbloquea" returnType="void" visibility="public">
+          <Argument type="Pregunta" name="p"/>
+        </Method>
+        <Method name="getPreguntasQueDesbloquea" returnType="Map&lt;Long, Pregunta&gt;" visibility="public"/>
+        <Method name="setPreguntasQueDesbloquea" returnType="void" visibility="public">
+          <Argument type="Map&lt;Long, Pregunta&gt;" name="preguntasQueDesbloquea"/>
+        </Method>
+        <Method name="getId" returnType="Long" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="getDescripcion" returnType="Informacion" visibility="public"/>
+        <Method name="setDescripcion" returnType="void" visibility="public">
+          <Argument type="Informacion" name="descripcion"/>
+        </Method>
+        <Method name="getTip" returnType="Informacion" visibility="public"/>
+        <Method name="setTip" returnType="void" visibility="public">
+          <Argument type="Informacion" name="tip"/>
+        </Method>
+        <Method name="getPuntos" returnType="int" visibility="public"/>
+        <Method name="setPuntos" returnType="void" visibility="public">
+          <Argument type="int" name="puntos"/>
+        </Method>
+        <Method name="getTema" returnType="Tema" visibility="public"/>
+        <Method name="setTema" returnType="void" visibility="public">
+          <Argument type="Tema" name="tema"/>
+        </Method>
+        <Method name="getProfesor" returnType="Profesor" visibility="public"/>
+        <Method name="setProfesor" returnType="void" visibility="public">
+          <Argument type="Profesor" name="profesor"/>
+        </Method>
+        <Method name="isInicial" returnType="boolean" visibility="public"/>
+        <Method name="setInicial" returnType="void" visibility="public">
+          <Argument type="boolean" name="inicial"/>
+        </Method>
+        <Method name="getRespuesta" returnType="String" visibility="public"/>
+        <Method name="setRespuesta" returnType="void" visibility="public">
+          <Argument type="String" name="respuesta"/>
+        </Method>
+        <Method name="getTitulo" returnType="String" visibility="public"/>
+        <Method name="setTitulo" returnType="void" visibility="public">
+          <Argument type="String" name="titulo"/>
+        </Method>
+        <Method name="getCantRespuestas" returnType="int" visibility="public"/>
+        <Method name="setCantRespuestas" returnType="void" visibility="public">
+          <Argument type="int" name="cantRespuestas"/>
+        </Method>
+        <Method name="getCantRespuestasCorrectas" returnType="int" visibility="public"/>
+        <Method name="setCantRespuestasCorrectas" returnType="void" visibility="public">
+          <Argument type="int" name="cantRespuestasCorrectas"/>
+        </Method>
+        <Method name="getProcentajeRespuestasCorrectas" returnType="float" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PreguntaAlumno" package="calculus.backend.model" visibility="public" xPosition="2120.0" yPosition="1220.0">
+      <Fields>
+        <Field name="pregunta" type="Pregunta" visibility="private"/>
+        <Field name="respuestaCorrecta" type="boolean" visibility="private"/>
+        <Field name="respuestaIncorrecta" type="int" visibility="private"/>
+        <Field name="blocked" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Pregunta" name="pregunta"/>
+          <Argument type="boolean" name="blocked"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="Pregunta" name="pregunta"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getPreguntaId" returnType="Long" visibility="public"/>
+        <Method name="fueRespondida" returnType="boolean" visibility="public"/>
+        <Method name="getPregunta" returnType="Pregunta" visibility="public"/>
+        <Method name="setPregunta" returnType="void" visibility="public">
+          <Argument type="Pregunta" name="pregunta"/>
+        </Method>
+        <Method name="isRespuestaCorrecta" returnType="boolean" visibility="public"/>
+        <Method name="setRespuestaCorrecta" returnType="void" visibility="public">
+          <Argument type="boolean" name="respuestaCorrecta"/>
+        </Method>
+        <Method name="getRespuestaIncorrecta" returnType="int" visibility="public"/>
+        <Method name="setRespuestaIncorrecta" returnType="void" visibility="public">
+          <Argument type="int" name="respuestaIncorrecta"/>
+        </Method>
+        <Method name="isBlocked" returnType="boolean" visibility="public"/>
+        <Method name="setBlocked" returnType="void" visibility="public">
+          <Argument type="boolean" name="blocked"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PreguntaCompletar" package="calculus.backend.model" visibility="public" xPosition="20.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Tema" name="tema"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="Tema" name="tema"/>
+          <Argument type="String" name="respuesta"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="esCorrectaRespuesta" returnType="boolean" visibility="public">
+          <Argument type="String" name="r"/>
+        </Method>
+        <Method name="getType" returnType="Class" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PreguntaMO" package="calculus.backend.model" visibility="public" xPosition="320.0" yPosition="1620.0">
+      <Fields>
+        <Field name="opciones" type="List&lt;String&gt;" visibility="package"/>
+        <Field name="respuesta" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Tema" name="tema"/>
+          <Argument type="String" name="r"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getOpciones" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="setOpciones" returnType="void" visibility="public">
+          <Argument type="List&lt;String&gt;" name="opciones"/>
+        </Method>
+        <Method name="getRespuesta" returnType="String" visibility="public"/>
+        <Method name="setRespuesta" returnType="void" visibility="public">
+          <Argument type="String" name="respuesta"/>
+        </Method>
+        <Method name="esCorrectaRespuesta" returnType="boolean" visibility="public">
+          <Argument type="String" name="r"/>
+        </Method>
+        <Method name="getType" returnType="Class" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Profesor" package="calculus.backend.model" visibility="public" xPosition="620.0" yPosition="1620.0">
+      <Fields>
+        <Field name="preguntasCreadas" type="Map&lt;Long, Pregunta&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getPreguntasCreadas" returnType="Map&lt;Long, Pregunta&gt;" visibility="public"/>
+        <Method name="setPreguntasCreadas" returnType="void" visibility="public">
+          <Argument type="Map&lt;Long, Pregunta&gt;" name="preguntasCreadas"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RespuestaPregunta" package="calculus.backend.model" visibility="public" xPosition="920.0" yPosition="1620.0">
+      <Fields>
+        <Field name="correcto" type="boolean" visibility="private"/>
+        <Field name="puntosGanadosEnEstaPregunta" type="int" visibility="private"/>
+        <Field name="PuntosTotal" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="isCorrecto" returnType="boolean" visibility="public"/>
+        <Method name="setCorrecto" returnType="void" visibility="public">
+          <Argument type="boolean" name="correcto"/>
+        </Method>
+        <Method name="getPuntosGanadosEnEstaPregunta" returnType="int" visibility="public"/>
+        <Method name="setPuntosGanadosEnEstaPregunta" returnType="void" visibility="public">
+          <Argument type="int" name="puntosGanadosEnEstaPregunta"/>
+        </Method>
+        <Method name="getPuntosTotal" returnType="int" visibility="public"/>
+        <Method name="setPuntosTotal" returnType="void" visibility="public">
+          <Argument type="int" name="PuntosTotal"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Tema" package="calculus.backend.model" visibility="public" xPosition="1220.0" yPosition="1620.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="tema" type="String" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getId" returnType="Long" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="getTema" returnType="String" visibility="public"/>
+        <Method name="setTema" returnType="void" visibility="public">
+          <Argument type="String" name="tema"/>
+        </Method>
+        <Method name="getDescripcion" returnType="String" visibility="public"/>
+        <Method name="setDescripcion" returnType="void" visibility="public">
+          <Argument type="String" name="descripcion"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Token" package="calculus.backend.model" visibility="public" xPosition="1520.0" yPosition="1620.0">
+      <Fields>
+        <Field name="TOKEN_TYPE_ALUMNO" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="TOKEN_TYPE_PROFESOR" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="separator" type="String" visibility="protected" isStatic="true" isFinal="true"/>
+        <Field name="userType" type="String" visibility="private"/>
+        <Field name="userEmail" type="String" visibility="private"/>
+        <Field name="userPassword" type="String" visibility="private"/>
+        <Field name="key" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="key"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="userType"/>
+          <Argument type="String" name="userEmail"/>
+          <Argument type="String" name="userPassword"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="generateToken" returnType="String" visibility="public" isStatic="true" isFinal="true">
+          <Argument type="String" name="type"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="passwd"/>
+        </Method>
+        <Method name="getUserPassword" returnType="String" visibility="public"/>
+        <Method name="setUserPassword" returnType="void" visibility="public">
+          <Argument type="String" name="userPassword"/>
+        </Method>
+        <Method name="getKey" returnType="String" visibility="public"/>
+        <Method name="setKey" returnType="void" visibility="public">
+          <Argument type="String" name="key"/>
+        </Method>
+        <Method name="getUserType" returnType="String" visibility="public"/>
+        <Method name="setUserType" returnType="void" visibility="public">
+          <Argument type="String" name="userType"/>
+        </Method>
+        <Method name="getUserEmail" returnType="String" visibility="public"/>
+        <Method name="setUserEmail" returnType="void" visibility="public">
+          <Argument type="String" name="userEmail"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="AlumnoRepository" package="calculus.backend.repository" visibility="public" xPosition="1820.0" yPosition="1620.0">
+      <Methods>
+        <Method name="findByEmail" returnType="Alumno" visibility="package">
+          <Argument type="String" name="email"/>
+        </Method>
+        <Method name="getRanking" returnType="List&lt;Alumno&gt;" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="DudaRepository" package="calculus.backend.repository" visibility="public" xPosition="2120.0" yPosition="1620.0">
+      <Methods>
+        <Method name="findDudasAlumno" returnType="List&lt;Duda&gt;" visibility="package">
+          <Argument type="Alumno" name="alumno"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="ErrorRepository" package="calculus.backend.repository" visibility="public" xPosition="20.0" yPosition="2020.0">
+      <Methods>
+        <Method name="findErroresAlumno" returnType="List&lt;calculus.backend.model.Error&gt;" visibility="public">
+          <Argument type="Alumno" name="alumno"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="PreguntaCompletarRepository" package="calculus.backend.repository" visibility="public" xPosition="320.0" yPosition="2020.0">
+      <Methods/>
+    </Interface>
+    <Interface name="PreguntaRepository" package="calculus.backend.repository" visibility="public" xPosition="620.0" yPosition="2020.0">
+      <Methods>
+        <Method name="getPreguntasTema" returnType="Set&lt;Pregunta&gt;" visibility="public">
+          <Argument type="Tema" name="t"/>
+        </Method>
+        <Method name="getPreguntas" returnType="Set&lt;Pregunta&gt;" visibility="public"/>
+        <Method name="getCantRespuestas" returnType="long" visibility="public"/>
+        <Method name="getCantRespuestasCorrectas" returnType="long" visibility="public"/>
+        <Method name="getPreguntasDificiles" returnType="Set&lt;Pregunta&gt;" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="ProfesorRepository" package="calculus.backend.repository" visibility="public" xPosition="920.0" yPosition="2020.0">
+      <Methods>
+        <Method name="findByEmail" returnType="Profesor" visibility="package">
+          <Argument type="String" name="email"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="TemaRepository" package="calculus.backend.repository" visibility="public" xPosition="1220.0" yPosition="2020.0">
+      <Methods/>
+    </Interface>
+    <Class name="AbstractService" package="calculus.backend.service" visibility="public" isAbstract="true" xPosition="1520.0" yPosition="2020.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getRepository" returnType="JpaRepository" visibility="protected" isAbstract="true"/>
+        <Method name="findAll" returnType="List&lt;T&gt;" visibility="public"/>
+        <Method name="findById" returnType="T" visibility="public">
+          <Argument type="long" name="id"/>
+        </Method>
+        <Method name="create" returnType="T" visibility="public">
+          <Argument type="T" name="obj"/>
+        </Method>
+        <Method name="update" returnType="T" visibility="public">
+          <Argument type="T" name="obj"/>
+        </Method>
+        <Method name="delete" returnType="void" visibility="public">
+          <Argument type="T" name="obj"/>
+        </Method>
+        <Method name="deleteId" returnType="void" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="deleteAll" returnType="void" visibility="public"/>
+        <Method name="exists" returnType="boolean" visibility="public">
+          <Argument type="T" name="obj"/>
+        </Method>
+        <Method name="existsId" returnType="boolean" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="getGenericName" returnType="String" visibility="protected"/>
+        <Method name="getEntityClass" returnType="Class&lt;T&gt;" visibility="protected"/>
+      </Methods>
+    </Class>
+    <Class name="AlumnoService" package="calculus.backend.service" visibility="public" xPosition="1820.0" yPosition="2020.0">
+      <Fields>
+        <Field name="repository" type="AlumnoRepository" visibility="package"/>
+        <Field name="preguntaRepository" type="PreguntaRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getRepository" returnType="JpaRepository" visibility="protected"/>
+        <Method name="findByEmail" returnType="Alumno" visibility="public">
+          <Argument type="String" name="email"/>
+        </Method>
+        <Method name="asignarPreguntasAlAlumno" returnType="void" visibility="public">
+          <Argument type="Long" name="alumno_id"/>
+        </Method>
+        <Method name="getPreguntasAlumno" returnType="Set&lt;PreguntaAlumno&gt;" visibility="public">
+          <Argument type="Long" name="alumno_id"/>
+        </Method>
+        <Method name="getPreguntaAlumno" returnType="PreguntaAlumno" visibility="public">
+          <Argument type="Long" name="alumno_id"/>
+          <Argument type="Long" name="pregunta_id"/>
+        </Method>
+        <Method name="getPreguntasAlumnoTema" returnType="Set&lt;PreguntaAlumno&gt;" visibility="public">
+          <Argument type="Long" name="alumno_id"/>
+          <Argument type="Long" name="tema_id"/>
+        </Method>
+        <Method name="responderPregunta" returnType="boolean" visibility="public">
+          <Argument type="Long" name="alumno_id"/>
+          <Argument type="Long" name="pregunta_id"/>
+          <Argument type="String" name="respuesta"/>
+        </Method>
+        <Method name="findById" returnType="Alumno" visibility="public">
+          <Argument type="long" name="id"/>
+        </Method>
+        <Method name="findAll" returnType="List&lt;Alumno&gt;" visibility="public"/>
+        <Method name="calcularPreguntasCorrectasEIncorrectas" returnType="void" visibility="protected">
+          <Argument type="Alumno" name="entity"/>
+        </Method>
+        <Method name="getRanking" returnType="List&lt;Alumno&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="DashboardService" package="calculus.backend.service" visibility="public" xPosition="2120.0" yPosition="2020.0">
+      <Fields>
+        <Field name="preguntaDAO" type="PreguntaRepository" visibility="package"/>
+        <Field name="alumnoDAO" type="AlumnoRepository" visibility="package"/>
+        <Field name="dudaDAO" type="DudaRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getEstadisticas" returnType="EstadisticasDashboard" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="DudaService" package="calculus.backend.service" visibility="public" xPosition="20.0" yPosition="2420.0">
+      <Fields>
+        <Field name="repository" type="DudaRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getRepository" returnType="JpaRepository" visibility="protected"/>
+        <Method name="findDudasAlumno" returnType="List&lt;Duda&gt;" visibility="public">
+          <Argument type="Alumno" name="alumno"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ErrorService" package="calculus.backend.service" visibility="public" xPosition="320.0" yPosition="2420.0">
+      <Fields>
+        <Field name="repository" type="ErrorRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getRepository" returnType="JpaRepository" visibility="protected"/>
+        <Method name="findErroresAlumno" returnType="List&lt;Error&gt;" visibility="public">
+          <Argument type="Alumno" name="user"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PreguntaCompletarService" package="calculus.backend.service" visibility="public" xPosition="620.0" yPosition="2420.0">
+      <Fields>
+        <Field name="repository" type="PreguntaCompletarRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getRepository" returnType="JpaRepository" visibility="protected"/>
+      </Methods>
+    </Class>
+    <Class name="PreguntaService" package="calculus.backend.service" visibility="public" xPosition="920.0" yPosition="2420.0">
+      <Fields>
+        <Field name="repository" type="PreguntaRepository" visibility="package"/>
+        <Field name="temaRepository" type="TemaRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getRepository" returnType="JpaRepository" visibility="protected"/>
+        <Method name="getMapPreguntasFromCollectionId" returnType="Map&lt;Long, Pregunta&gt;" visibility="public">
+          <Argument type="Collection&lt;Long&gt;" name="ids"/>
+        </Method>
+        <Method name="getPreguntasTema" returnType="Set&lt;Pregunta&gt;" visibility="public">
+          <Argument type="Long" name="profeId"/>
+          <Argument type="long" name="tema"/>
+        </Method>
+        <Method name="aumentarCantRespuestas" returnType="void" visibility="public">
+          <Argument type="long" name="pregunta_id"/>
+          <Argument type="boolean" name="esCorrecta"/>
+        </Method>
+        <Method name="getPreguntas" returnType="Set&lt;Pregunta&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ProfesorService" package="calculus.backend.service" visibility="public" xPosition="1220.0" yPosition="2420.0">
+      <Fields>
+        <Field name="repository" type="ProfesorRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getRepository" returnType="JpaRepository" visibility="protected"/>
+      </Methods>
+    </Class>
+    <Class name="SessionService" package="calculus.backend.service" visibility="public" xPosition="1520.0" yPosition="2420.0">
+      <Fields>
+        <Field name="profesorDAO" type="ProfesorRepository" visibility="package"/>
+        <Field name="alumnoRepository" type="AlumnoRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="login" returnType="Persona" visibility="public">
+          <Argument type="String" name="type"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="login" returnType="Persona" visibility="public">
+          <Argument type="String" name="key"/>
+        </Method>
+        <Method name="login" returnType="Persona" visibility="public">
+          <Argument type="Token" name="t"/>
+        </Method>
+        <Method name="fblogin" returnType="Persona" visibility="public">
+          <Argument type="Long" name="fbid"/>
+          <Argument type="String" name="nombre"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TemaService" package="calculus.backend.service" visibility="public" xPosition="1820.0" yPosition="2420.0">
+      <Fields>
+        <Field name="repository" type="TemaRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getRepository" returnType="JpaRepository" visibility="protected"/>
+      </Methods>
+    </Class>
+    <Class name="View" package="calculus.backend" visibility="public" xPosition="2120.0" yPosition="2420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="AbstractController" package="deprecated" visibility="public" isAbstract="true" xPosition="20.0" yPosition="2820.0">
+      <Fields>
+        <Field name="AUTHORIZATION" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getService" returnType="AbstractService" visibility="protected" isAbstract="true"/>
+        <Method name="getMapString" returnType="String" visibility="protected" isAbstract="true"/>
+        <Method name="findAll" returnType="ResponseEntity&lt;List&lt;T&gt;&gt;" visibility="public">
+          <Argument type="String" name="authorizationToken"/>
+        </Method>
+        <Method name="findById" returnType="ResponseEntity&lt;T&gt;" visibility="public">
+          <Argument type="long" name="id"/>
+          <Argument type="String" name="authorizationToken"/>
+        </Method>
+        <Method name="create" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="T" name="obj"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+          <Argument type="String" name="authorizationToken"/>
+        </Method>
+        <Method name="update" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="T" name="obj"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+          <Argument type="String" name="authorizationToken"/>
+        </Method>
+        <Method name="delete" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="long" name="id"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+          <Argument type="String" name="authorizationToken"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AlumnoController" package="deprecated" visibility="public" xPosition="320.0" yPosition="2820.0">
+      <Fields>
+        <Field name="URI_PREFIX" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="LOG" type="Logger" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="service" type="AlumnoService" visibility="protected"/>
+        <Field name="sessionService" type="SessionService" visibility="protected"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getService" returnType="AbstractService" visibility="protected"/>
+        <Method name="getMapString" returnType="String" visibility="protected"/>
+        <Method name="findById" returnType="ResponseEntity&lt;Alumno&gt;" visibility="public">
+          <Argument type="long" name="id"/>
+          <Argument type="String" name="authorizationToken"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DashboardController" package="deprecated" visibility="public" xPosition="620.0" yPosition="2820.0">
+      <Fields>
+        <Field name="service" type="DashboardService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getEstadisticas" returnType="ResponseEntity&lt;EstadisticasDashboard&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="DudaController" package="deprecated" visibility="public" xPosition="920.0" yPosition="2820.0">
+      <Fields>
+        <Field name="service" type="DudaService" visibility="package"/>
+        <Field name="sessionService" type="SessionService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getService" returnType="DudaService" visibility="protected"/>
+        <Method name="getMapString" returnType="String" visibility="protected"/>
+        <Method name="findAll" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="findById" returnType="ResponseEntity&lt;Duda&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="long" name="id"/>
+        </Method>
+        <Method name="create" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="Duda" name="obj"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+        </Method>
+        <Method name="update" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="Long" name="id"/>
+          <Argument type="String" name="respuesta"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+        </Method>
+        <Method name="update" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="Long" name="id"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+        </Method>
+        <Method name="update" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="Duda" name="obj"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+        </Method>
+        <Method name="delete" returnType="ResponseEntity&lt;Void&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+          <Argument type="Duda" name="obj"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DummyController" package="deprecated" visibility="public" xPosition="1220.0" yPosition="2820.0">
+      <Fields>
+        <Field name="service" type="PreguntaService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="dummy" returnType="ResponseEntity&lt;String&gt;" visibility="public"/>
+        <Method name="findAll" returnType="ResponseEntity&lt;List&lt;Pregunta&gt;&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PreguntaController" package="deprecated" visibility="public" xPosition="1520.0" yPosition="2820.0">
+      <Fields>
+        <Field name="URI_PREFIX" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="preguntaService" type="PreguntaService" visibility="package"/>
+        <Field name="alumnoService" type="AlumnoService" visibility="package"/>
+        <Field name="profesorService" type="ProfesorService" visibility="package"/>
+        <Field name="sessionService" type="SessionService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getService" returnType="AbstractService" visibility="protected"/>
+        <Method name="getMapString" returnType="String" visibility="protected"/>
+        <Method name="create" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="Pregunta" name="obj"/>
+          <Argument type="UriComponentsBuilder" name="ucBuilder"/>
+          <Argument type="String" name="authorizationToken"/>
+        </Method>
+        <Method name="getPreguntasAlumno" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="getPreguntasAlumnoTema" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="long" name="idTema"/>
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="getPreguntasAlumnoTemaSummary" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="long" name="idTema"/>
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="responderPregunta" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="long" name="pregunta_id"/>
+          <Argument type="String" name="respuesta"/>
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="addDesbloqueos" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="long" name="id"/>
+          <Argument type="List&lt;Long&gt;" name="listaIds"/>
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="removeDesbloqueos" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="long" name="id"/>
+          <Argument type="List&lt;Long&gt;" name="listaIds"/>
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="comoDesbloquear" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="Long" name="id"/>
+          <Argument type="String" name="token_key"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ProfesorController" package="deprecated" visibility="public" xPosition="1820.0" yPosition="2820.0">
+      <Fields>
+        <Field name="URI_PREFIX" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="service" type="ProfesorService" visibility="protected"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getService" returnType="AbstractService" visibility="protected"/>
+        <Method name="getMapString" returnType="String" visibility="protected"/>
+      </Methods>
+    </Class>
+    <Class name="SessionController" package="deprecated" visibility="public" xPosition="2120.0" yPosition="2820.0">
+      <Fields>
+        <Field name="service" type="SessionService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="login" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="type"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="soloAlumnos" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+        </Method>
+        <Method name="soloProfes" returnType="ResponseEntity&lt;?&gt;" visibility="public">
+          <Argument type="String" name="token_key"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TemaController" package="deprecated" visibility="public" xPosition="20.0" yPosition="3220.0">
+      <Fields>
+        <Field name="URI_PREFIX" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="service" type="TemaService" visibility="protected"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getService" returnType="AbstractService" visibility="protected"/>
+        <Method name="getMapString" returnType="String" visibility="protected"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="sessionService" source="deprecated.AlumnoController" target="calculus.backend.service.SessionService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.service.ErrorService" target="calculus.backend.model.Error" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.repository.DudaRepository" target="calculus.backend.model.Duda" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.service.SessionService" target="calculus.backend.model.Persona" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.repository.PreguntaRepository" target="calculus.backend.model.Tema" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="repository" source="calculus.backend.service.AlumnoService" target="calculus.backend.repository.AlumnoRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.model.Error" target="calculus.backend.model.Pregunta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="temaService" source="deprecated.TemaController" target="calculus.backend.service.TemaService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="service" source="deprecated.AlumnoController" target="calculus.backend.service.AlumnoService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="calculus.backend.controller.v2.admin.TemaController" target="calculus.backend.controller.v2.admin.AbstractController"/>
+    <IsRelation name="is" source="calculus.backend.model.Alumno" target="calculus.backend.model.Persona"/>
+    <HasRelation name="alumnoService" source="calculus.backend.controller.v1.InitController" target="calculus.backend.service.AlumnoService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="calculus.backend.model.Pregunta" target="calculus.backend.model.AbstractModel"/>
+    <HasRelation name="sessionService" source="calculus.backend.controller.v2.game.ErrorController" target="calculus.backend.service.SessionService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="deprecated.DummyController" target="calculus.backend.model.Pregunta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="deprecated.DudaController" target="calculus.backend.service.DudaService" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.controller.v2.game.ErrorController" target="calculus.backend.service.ErrorService" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="alumno" source="calculus.backend.model.Duda" target="calculus.backend.model.Alumno" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="calculus.backend.service.ProfesorService" target="calculus.backend.service.AbstractService"/>
+    <HasRelation name="service" source="deprecated.TemaController" target="calculus.backend.service.TemaService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.model.Pregunta" target="calculus.backend.model.Pregunta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="repository" source="calculus.backend.service.DudaService" target="calculus.backend.repository.DudaRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.model.Pregunta" target="calculus.backend.model.Tema" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="alumnoRepository" source="calculus.backend.service.SessionService" target="calculus.backend.repository.AlumnoRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.service.PreguntaService" target="calculus.backend.model.Pregunta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.controller.v1.GlobalDefaultExceptionHandler" target="calculus.backend.model.Error" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="service" source="deprecated.SessionController" target="calculus.backend.service.SessionService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="alumnoDAO" source="calculus.backend.service.DashboardService" target="calculus.backend.repository.AlumnoRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.repository.PreguntaRepository" target="calculus.backend.model.Pregunta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="calculus.backend.service.ErrorService" target="calculus.backend.service.AbstractService"/>
+    <UseRelation source="calculus.backend.service.DudaService" target="calculus.backend.model.Duda" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="errorService" source="calculus.backend.controller.v2.game.ErrorController" target="calculus.backend.service.ErrorService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.model.EstadisticasDashboard" target="calculus.backend.model.Pregunta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.repository.ProfesorRepository" target="calculus.backend.model.Profesor" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="deprecated.ProfesorController" target="calculus.backend.service.AbstractService" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.repository.ErrorRepository" target="calculus.backend.model.Error" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="preguntaService" source="deprecated.PreguntaController" target="calculus.backend.service.PreguntaService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="tip" source="calculus.backend.model.Pregunta" target="calculus.backend.model.Informacion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="deprecated.PreguntaController" target="calculus.backend.service.AbstractService" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="preguntasQueDesbloquea" source="calculus.backend.model.Pregunta" target="calculus.backend.model.Pregunta" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Map&lt;Long, Pregunta&gt;"/>
+    <HasRelation name="service" source="deprecated.DashboardController" target="calculus.backend.service.DashboardService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.controller.v2.game.ErrorController" target="calculus.backend.model.Error" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.model.PreguntaAlumno" target="calculus.backend.model.Pregunta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="repository" source="calculus.backend.service.ProfesorService" target="calculus.backend.repository.ProfesorRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="calculus.backend.controller.v2.admin.ProfesorController" target="calculus.backend.controller.v2.admin.AbstractController"/>
+    <UseRelation source="deprecated.TemaController" target="calculus.backend.service.AbstractService" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="preguntas_dificiles" source="calculus.backend.model.EstadisticasDashboard" target="calculus.backend.model.Pregunta" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Set&lt;Pregunta&gt;"/>
+    <HasRelation name="alumnoService" source="deprecated.AlumnoController" target="calculus.backend.service.AlumnoService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.service.AlumnoService" target="calculus.backend.model.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.model.Pregunta" target="calculus.backend.model.Informacion" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="preguntasCreadas" source="calculus.backend.model.Profesor" target="calculus.backend.model.Pregunta" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Map&lt;Long, Pregunta&gt;"/>
+    <HasRelation name="alumno" source="calculus.backend.model.Error" target="calculus.backend.model.Alumno" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="deprecated.DudaController" target="calculus.backend.model.Duda" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="preguntaService" source="calculus.backend.controller.v1.InitController" target="calculus.backend.service.PreguntaService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="calculus.backend.model.Persona" target="calculus.backend.model.AbstractModel"/>
+    <HasRelation name="descripcion" source="calculus.backend.model.Pregunta" target="calculus.backend.model.Informacion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.service.SessionService" target="calculus.backend.model.Token" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sessionService" source="deprecated.TemaController" target="calculus.backend.service.SessionService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="calculus.backend.service.DudaService" target="calculus.backend.service.AbstractService"/>
+    <IsRelation name="is" source="calculus.backend.controller.v2.admin.AlumnoController" target="calculus.backend.controller.v2.admin.AbstractController"/>
+    <HasRelation name="repository" source="calculus.backend.service.PreguntaCompletarService" target="calculus.backend.repository.PreguntaCompletarRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="preguntaDAO" source="calculus.backend.service.DashboardService" target="calculus.backend.repository.PreguntaRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="deprecated.AlumnoController" target="calculus.backend.service.AbstractService" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sessionService" source="deprecated.PreguntaController" target="calculus.backend.service.SessionService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="service" source="deprecated.DudaController" target="calculus.backend.service.DudaService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="calculus.backend.model.Profesor" target="calculus.backend.model.Persona"/>
+    <HasRelation name="profesor" source="calculus.backend.model.Pregunta" target="calculus.backend.model.Profesor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="profesorService" source="deprecated.PreguntaController" target="calculus.backend.service.ProfesorService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="preguntasAlumno" source="calculus.backend.model.Alumno" target="calculus.backend.model.PreguntaAlumno" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Map&lt;Long, PreguntaAlumno&gt;"/>
+    <UseRelation source="calculus.backend.model.Alumno" target="calculus.backend.model.PreguntaAlumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="alumnoService" source="deprecated.TemaController" target="calculus.backend.service.AlumnoService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="calculus.backend.model.Error" target="calculus.backend.model.AbstractModel"/>
+    <IsRelation name="is" source="calculus.backend.model.PreguntaCompletar" target="calculus.backend.model.Pregunta"/>
+    <HasRelation name="preguntaService" source="deprecated.TemaController" target="calculus.backend.service.PreguntaService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="temaService" source="calculus.backend.controller.v1.InitController" target="calculus.backend.service.TemaService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="deprecated.PreguntaController" target="calculus.backend.model.Pregunta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="calculus.backend.model.Tema" target="calculus.backend.model.AbstractModel"/>
+    <HasRelation name="profesorService" source="calculus.backend.controller.v1.InitController" target="calculus.backend.service.ProfesorService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="calculus.backend.controller.v2.admin.PreguntaController" target="calculus.backend.controller.v2.admin.AbstractController"/>
+    <IsRelation name="is" source="calculus.backend.model.Duda" target="calculus.backend.model.AbstractModel"/>
+    <IsRelation name="is" source="calculus.backend.service.PreguntaService" target="calculus.backend.service.AbstractService"/>
+    <UseRelation source="deprecated.DashboardController" target="calculus.backend.model.EstadisticasDashboard" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.service.DashboardService" target="calculus.backend.model.EstadisticasDashboard" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="service" source="deprecated.DummyController" target="calculus.backend.service.PreguntaService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="temaRepository" source="calculus.backend.service.PreguntaService" target="calculus.backend.repository.TemaRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dudaService" source="calculus.backend.controller.v1.InitController" target="calculus.backend.service.DudaService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="service" source="deprecated.ProfesorController" target="calculus.backend.service.ProfesorService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.model.Error" target="calculus.backend.model.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.model.Duda" target="calculus.backend.model.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sessionService" source="deprecated.DudaController" target="calculus.backend.service.SessionService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.service.AlumnoService" target="calculus.backend.model.PreguntaAlumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="errorService" source="calculus.backend.controller.v1.InitController" target="calculus.backend.service.ErrorService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="service" source="calculus.backend.controller.v2.game.ErrorController" target="calculus.backend.service.ErrorService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="tema" source="calculus.backend.model.Pregunta" target="calculus.backend.model.Tema" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="deprecated.AlumnoController" target="calculus.backend.model.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pregunta" source="calculus.backend.model.PreguntaAlumno" target="calculus.backend.model.Pregunta" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="calculus.backend.service.AlumnoService" target="calculus.backend.service.AbstractService"/>
+    <UseRelation source="deprecated.AbstractController" target="calculus.backend.service.AbstractService" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pregunta" source="calculus.backend.model.Error" target="calculus.backend.model.Pregunta" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="repository" source="calculus.backend.service.TemaService" target="calculus.backend.repository.TemaRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="repository" source="calculus.backend.service.PreguntaService" target="calculus.backend.repository.PreguntaRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="alumnoService" source="deprecated.PreguntaController" target="calculus.backend.service.AlumnoService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="calculus.backend.model.PreguntaMO" target="calculus.backend.model.Pregunta"/>
+    <IsRelation name="is" source="calculus.backend.service.PreguntaCompletarService" target="calculus.backend.service.AbstractService"/>
+    <UseRelation source="calculus.backend.model.Pregunta" target="calculus.backend.model.Profesor" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="calculus.backend.service.TemaService" target="calculus.backend.service.AbstractService"/>
+    <UseRelation source="calculus.backend.repository.AlumnoRepository" target="calculus.backend.model.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dudaService" source="deprecated.DudaController" target="calculus.backend.service.DudaService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="preguntaService" source="calculus.backend.controller.v2.game.ErrorController" target="calculus.backend.service.PreguntaService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="dudaDAO" source="calculus.backend.service.DashboardService" target="calculus.backend.repository.DudaRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="repository" source="calculus.backend.service.ErrorService" target="calculus.backend.repository.ErrorRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="profesorDAO" source="calculus.backend.service.SessionService" target="calculus.backend.repository.ProfesorRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="preguntaRepository" source="calculus.backend.service.AlumnoService" target="calculus.backend.repository.PreguntaRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="calculus.backend.model.Profesor" target="calculus.backend.model.Pregunta" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

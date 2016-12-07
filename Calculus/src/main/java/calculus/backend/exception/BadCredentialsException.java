@@ -1,0 +1,31 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package calculus.backend.exception;
+
+/**
+ * Disparada cuando está mal la password al autenticar.
+ * @author abentan
+ */
+public class BadCredentialsException extends RuntimeException
+{
+
+    /**
+     * Creates a new instance of <code>WrongPasswordException</code> without detail message.
+     */
+    public BadCredentialsException()
+    {
+    }
+
+    /**
+     * Constructs an instance of <code>WrongPasswordException</code> with the specified detail message.
+     *
+     * @param msg the detail message.
+     */
+    public BadCredentialsException(String msg)
+    {
+        super(msg);
+    }
+}

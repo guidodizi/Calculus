@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Calculus | Login</title>
+	
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet"> 
+    <link href="css/lightbox.css" rel="stylesheet"> 
+    <link href="css/custom.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet">
+    <link href="css/ng-notify.min.css" rel="stylesheet">
+	<link rel="icon" href="images/LogoBox.png">
+	
+    <!--[if lt IE 9]>
+	    <script src="js/html5shiv.js"></script>
+	    <script src="js/respond.min.js"></script>
+    <![endif]-->
+	   
+    <script src="js/Defaults/angular.min.js"></script>
+    <script src="js/Defaults/ng-notify.min.js"></script>
+</head>
+
+<body ng-app="LoginApp">
+    <header id="header">      
+      	<img src="images/Layer1.png" alt="logo" class="imgLogo">
+    </header>
+
+	<div class="container" ng-controller="LoginController as LoginCtrl">
+		<div class="row">
+
+			<div class="col-xs-12" style="margin-top: 27px;">
+				<div class="bottom">
+					<div class="form-group">
+						<input type="text" ng-model="LoginCtrl.email" ng-keyup="LoginCtrl.access($event)" class="form-control" required="required" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<input type="password" ng-model="LoginCtrl.password" ng-keyup="LoginCtrl.access($event)" class="form-control" required="required" placeholder="Contraseña">
+					</div>                        
+					<div class="form-group">
+						<input type="submit" ng-click="LoginCtrl.sendLogin()" class="btn btn-submit" value="Ingresar">
+					</div>
+					<div class="form-group">
+						<a ng-click="LoginCtrl.fbLogin()" class="btn btn-submit fb-submit">
+						   <i class="fa fa-facebook fb-icon"></i>Ingresar con Facebook
+						</a>
+					</div>
+					<a href="registrar.html" style="float:right; color:#337ab7; margin-bottom:5px;">
+					   ¿No estás registrado? ¡Haz click aquí!
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<footer-directive></footer-directive>
+
+    <script type="text/javascript" src="js/Defaults/jquery.js"></script>
+    <script type="text/javascript" src="js/Defaults/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/Defaults/lightbox.min.js"></script>
+    <script type="text/javascript" src="js/Defaults/wow.min.js"></script>
+    <script type="text/javascript" src="js/Defaults/main.js"></script>  
+    <script type="text/javascript" src="js/utiles.js"></script>
+    <script type="text/javascript" src="js/login.js"></script> 
+ 
+</body>
+</html>
